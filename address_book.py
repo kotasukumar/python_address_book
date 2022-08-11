@@ -98,6 +98,7 @@ def search_by_city(list, name):
     for i in list:
         if i[3] == name:
             temp.append(i)
+    print(temp)
 
 
 def search_by_state(list, name):
@@ -105,6 +106,7 @@ def search_by_state(list, name):
     for i in list:
         if i[4] == name:
             temp.append(i)
+    print(temp)
 
 
 def main_menu():
