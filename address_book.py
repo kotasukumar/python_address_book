@@ -93,10 +93,24 @@ def book_entry(name):
             main_menu()
 
 
+def search_by_city(list, name):
+    temp = []
+    for i in list:
+        if i[3] == name:
+            temp.append(i)
+
+
+def search_by_state(list, name):
+    temp = []
+    for i in list:
+        if i[4] == name:
+            temp.append(i)
+
+
 def main_menu():
     while True:
         menu = int(input("Enter your choice\n1:Create book\n2:Access the existing address book\n"
-                         "3:Display all books\n4:Exit: "))
+                         "3:Display all books\n4:search person by city\n5:Search person by state\n6:Exit: "))
         if menu == 1:
             book_name = input("Enter name of the book: ")
             if addressbook:
@@ -114,6 +128,20 @@ def main_menu():
         elif menu == 3:
             print(addressbook)
         elif menu == 4:
+            city_name = input("Enter name of the city: ")
+            temp = []
+            for j in addressbook.keys():
+                for i in addressbook.get(j):
+                    temp.append(i)
+            search_by_city(temp, city_name)
+        elif menu == 5:
+            state_name = input("Enter name of the city: ")
+            temp = []
+            for j in addressbook.keys():
+                for i in addressbook.get(j):
+                    temp.append(i)
+            search_by_state(temp, state_name)
+        elif menu == 6:
             sys.exit()
 
 
@@ -121,4 +149,3 @@ if __name__ == "__main__":
     print("Welcome to address book")
     addressbook = {}
     main_menu()
-
