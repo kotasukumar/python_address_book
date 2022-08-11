@@ -20,7 +20,11 @@ def add(name):
     temp = addressbook.get(name)
     f_name = input("Enter first name: ")
     l_name = input("Enter last name: ")
+    temp1 = []
     if temp:
+        for i in addressbook.get(name):
+            temp1.append(i)
+        print(temp1)
         for i in temp:
             if f_name == i[0] or l_name == i[1]:
                 print("user name already exist")
@@ -32,8 +36,9 @@ def add(name):
                 email = input("Enter email id: ")
                 mobile_number = input("Enter mobile number: ")
                 result = Contact(f_name, l_name, address, city, state, pincode, email, mobile_number)
-                local.append(result.details)
-                addressbook[name] = local
+                temp1.append(result.details)
+                print(temp1)
+                addressbook[name] = temp1
                 print("Contact added successfully")
     else:
         address = input("Enter the address: ")
@@ -99,6 +104,7 @@ def search_by_city(list, name):
         if i[3] == name:
             temp.append(i)
     print(temp)
+    print(f"number of person in {name} is: ", len(temp))
 
 
 def search_by_state(list, name):
@@ -107,6 +113,7 @@ def search_by_state(list, name):
         if i[4] == name:
             temp.append(i)
     print(temp)
+    print(f"number of person in {name} is: ", len(temp))
 
 
 def main_menu():
