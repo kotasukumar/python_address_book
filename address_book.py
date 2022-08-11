@@ -17,23 +17,41 @@ class Contact:
 
 def add(name):
     local = []
+    temp = addressbook.get(name)
     f_name = input("Enter first name: ")
     l_name = input("Enter last name: ")
-    address = input("Enter the address: ")
-    city = input("Enter the city: ")
-    state = input("Enter the state: ")
-    pincode = input("Enter the pin code: ")
-    email = input("Enter email id: ")
-    mobile_number = input("Enter mobile number: ")
-    result = Contact(f_name, l_name, address, city, state, pincode, email, mobile_number)
-    contact_list.append(result.details)
-    local.append(result.details)
-    addressbook[name] = local
+    if temp:
+        for i in temp:
+            if f_name == i[0] or l_name == i[1]:
+                print("user name already exist")
+            else:
+                address = input("Enter the address: ")
+                city = input("Enter the city: ")
+                state = input("Enter the state: ")
+                pincode = input("Enter the pin code: ")
+                email = input("Enter email id: ")
+                mobile_number = input("Enter mobile number: ")
+                result = Contact(f_name, l_name, address, city, state, pincode, email, mobile_number)
+                local.append(result.details)
+                addressbook[name] = local
+                print("Contact added successfully")
+    else:
+        address = input("Enter the address: ")
+        city = input("Enter the city: ")
+        state = input("Enter the state: ")
+        pincode = input("Enter the pin code: ")
+        email = input("Enter email id: ")
+        mobile_number = input("Enter mobile number: ")
+        result = Contact(f_name, l_name, address, city, state, pincode, email, mobile_number)
+        local.append(result.details)
+        addressbook[name] = local
+        print("Contact added successfully")
 
 
 def edit(name):
     f_name = input("Enter first name: ")
     l_name = input("Enter last name: ")
+    contact_list = addressbook.get(name)
     for i in contact_list:
         if f_name == i[0] and l_name == i[1]:
             print("Contact found, please enter details to update")
@@ -58,16 +76,16 @@ def book_entry(name):
                   "\n5:Return to main menu: "))
         if user_input == 1:
             add(name)
-            print("Contact added successfully")
         elif user_input == 2:
             edit(name)
             print("Contact edited successfully")
         elif user_input == 3:
             f_name = input("Enter first name: ")
             l_name = input("Enter last name: ")
-            for i in addressbook.get(name):
+            temp = addressbook.get(name)
+            for i in temp:
                 if f_name == i[0] and l_name == i[1]:
-                    contact_list.remove(i)
+                    temp.remove(i)
             print("Contact deleted successfully")
         elif user_input == 4:
             print(addressbook.get(name))
@@ -90,6 +108,9 @@ def main_menu():
                         book_entry(book_name)
             else:
                 book_entry(book_name)
+        elif menu == 2:
+            name = input("Enter name of the book you are searching for: ")
+            book_entry(name)
         elif menu == 3:
             print(addressbook)
         elif menu == 4:
@@ -99,6 +120,5 @@ def main_menu():
 if __name__ == "__main__":
     print("Welcome to address book")
     addressbook = {}
-    contact_list = []
     main_menu()
 
