@@ -24,7 +24,6 @@ def add(name):
     if temp:
         for i in addressbook.get(name):
             temp1.append(i)
-        print(temp1)
         for i in temp:
             if f_name == i[0] or l_name == i[1]:
                 print("user name already exist")
@@ -37,7 +36,7 @@ def add(name):
                 mobile_number = input("Enter mobile number: ")
                 result = Contact(f_name, l_name, address, city, state, pincode, email, mobile_number)
                 temp1.append(result.details)
-                print(temp1)
+                temp1.sort()
                 addressbook[name] = temp1
                 print("Contact added successfully")
     else:
